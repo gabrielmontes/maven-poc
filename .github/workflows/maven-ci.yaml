@@ -21,8 +21,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Upload artifact
+    - name: Create target folder
       run: mkdir target
+    - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: hello-world-maven-0.1.0.jar
