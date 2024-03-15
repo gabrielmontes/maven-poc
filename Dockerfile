@@ -22,7 +22,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 RUN rm /usr/bin/java && ln -s /usr/lib/jvm/java-17-openjdk/bin/java /usr/bin/java
 
 # Copy code to /app:
-COPY target/hello-world-maven-*.jar /opt/helloworld/application.jar
+COPY hello-world-maven-*.jar /opt/helloworld/application.jar
 
 # Add ownership to opt: 
 RUN chgrp -R 0 /opt/ && chmod -R g=u /opt/
