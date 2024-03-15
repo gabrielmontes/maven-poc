@@ -39,6 +39,7 @@ jobs:
         path: target/hello-world-maven-*.jar
         
   docker-build:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Pull dockerfile 
