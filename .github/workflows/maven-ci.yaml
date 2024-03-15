@@ -5,22 +5,60 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+env:
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Upload dockerfile
+      uses: actions/upload-artifact@v2
+      with:
+        name: dockerfile
+        path: Dockerfile
+        
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: jar
         path: target/hello-world-maven-*.jar
+        
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull dockerfile 
+        uses: actions/download-artifact@v2
+        with:
+          name: dockerfile
+          
+      - name: Pull jar
+        uses: actions/download-artifact@v2
+        with: 
+          name: jar
+          
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: maven-poc/my-image:latest
