@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -21,10 +19,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Create target folder
-      run: mkdir target
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: hello-world-maven-0.1.0.jar
-        path: target/
+        name: jar
+        path: target/hello-world-maven-*.jar
