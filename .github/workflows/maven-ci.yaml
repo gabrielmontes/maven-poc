@@ -51,7 +51,8 @@ jobs:
         uses: actions/download-artifact@v2
         with: 
           name: jar
-          
+      
+      - uses: actions/checkout@v3
       - name: Docker-CI
         uses: gabrielmontes/actions-poc@v1.1
         with:
