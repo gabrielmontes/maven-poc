@@ -56,6 +56,6 @@ jobs:
         uses: gabrielmontes/actions-poc@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          token: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: "gabrielmontes/maven-poc"
           tag: "latest"
