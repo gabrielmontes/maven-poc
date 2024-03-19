@@ -53,7 +53,7 @@ jobs:
           name: jar
           
       - name: Docker-CI
-        uses: gabrielmontes/actions-poc@docker-ci-v1
+        uses: gabrielmontes/actions-poc@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
