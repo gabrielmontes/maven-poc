@@ -15,7 +15,7 @@ ENV LC_TIME en_US.UTF-8
 # Install Java 17 and dependencies:
 RUN apk update
 RUN apk --no-cache add openjdk17 --repository=https://dl-cdn.alpinelinux.org/alpine/v3.17/community    
-RUN apk add busybox-extras wget bash curl
+RUN apk add bash curl
 RUN rm -rf /var/cache/apk/*
 RUN mkdir /logs/ && chown -R 1001:1001 /logs/ && chmod 777 /logs/ && mkdir -p /app/logs && chown -R 1001:1001 /app/ && find /app/ -type d -exec chmod 755 {} \;
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
