@@ -57,7 +57,7 @@ jobs:
           repository: gabrielmontes/actions-poc
           
       - name: Docker-CI
-        uses: gabrielmontes/actions-poc@v1.1
+        uses: gabrielmontes/actions-poc@v1.2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           token: ${{ secrets.DOCKERHUB_TOKEN }}
